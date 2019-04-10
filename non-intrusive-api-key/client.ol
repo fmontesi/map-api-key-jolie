@@ -4,7 +4,7 @@ include "console.iol"
 init
 {
   with( GatedFormatConverter.protocol.ssl ) {
-    .trustStore = "api-gateway/cacerts.jks";
+    .trustStore = "api-gateway/cacerts.jks"
     .trustStorePassword = "helloworld"
   }
 }
@@ -17,13 +17,13 @@ main
 {
   xmlToJson@GatedFormatConverter( "<doc><p>Hello</p></doc>" {
       .apiKey = args[0]
-  } )( jsonData );
-  println@Console( jsonData )();
+  } )( jsonData )
+  println@Console( jsonData )()
   // {"doc":{"p":"Hello"}}
 
   jsonToXml@GatedFormatConverter( jsonData {
     .apiKey = args[0]
-  } )( xmlDoc );
+  } )( xmlDoc )
   println@Console( xmlDoc )()
   // <?xml version="1.0" encoding="UTF-8" standalone="no"?>
   // <doc><p>Hello</p></doc>

@@ -13,14 +13,14 @@ Interfaces: FormatConverterIface
 main
 {
 	[ xmlToJson( request )( response ) {
-		request.options.includeRoot = true;
-		xmlToValue@XmlUtils( request )( xml );
+		request.options.includeRoot = true
+		xmlToValue@XmlUtils( request )( xml )
 		getJsonString@JsonUtils( xml )( response )
 	} ]
 
 	[ jsonToXml( request )( response ) {
-		getJsonValue@JsonUtils( request )( xmlRequest.root );
-		xmlRequest.isXmlStore = false;
+		getJsonValue@JsonUtils( request )( xmlRequest.root )
+		xmlRequest.isXmlStore = false
 		valueToXml@XmlUtils( xmlRequest )( response )
 	} ]
 }

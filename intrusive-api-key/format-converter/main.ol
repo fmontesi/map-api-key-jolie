@@ -8,7 +8,7 @@ execution { concurrent }
 inputPort FormatConverterInput {
 Location: "socket://localhost:8080"
 Protocol: sodeps {
-	.ssl.keyStore = "keystore.jks";
+	.ssl.keyStore = "keystore.jks"
 	.ssl.keyStorePassword = "helloworld"
 }
 Interfaces: FormatConverterIface
@@ -22,7 +22,7 @@ init
 	readFile@File( {
 		.filename = "apikeys.json",
 		.format = "json"
-	} )( store );
+	} )( store )
 
 	// Put the API keys in a map, for later fast retrieval
 	for( key in store.apiKeys ) {
@@ -46,16 +46,16 @@ define checkApiKey
 main
 {
 	[ xmlToJson( request )( response ) {
-		checkApiKey;
-		request.options.includeRoot = true;
-		xmlToValue@XmlUtils( request )( xml );
+		checkApiKey
+		request.options.includeRoot = true
+		xmlToValue@XmlUtils( request )( xml )
 		getJsonString@JsonUtils( xml )( response )
 	} ]
 
 	[ jsonToXml( request )( response ) {
-		checkApiKey;
-		getJsonValue@JsonUtils( request )( xmlRequest.root );
-		xmlRequest.isXmlStore = false;
+		checkApiKey
+		getJsonValue@JsonUtils( request )( xmlRequest.root )
+		xmlRequest.isXmlStore = false
 		valueToXml@XmlUtils( xmlRequest )( response )
 	} ]
 }

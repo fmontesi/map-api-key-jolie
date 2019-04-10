@@ -12,7 +12,7 @@ RequestResponse:
 inputPort Gateway {
 Location: "socket://localhost:8081"
 Protocol: sodeps {
-	.ssl.keyStore = "keystore.jks";
+	.ssl.keyStore = "keystore.jks"
 	.ssl.keyStorePassword = "helloworld"
 }
 Aggregates: FormatConverter with ApiKeyExtender
@@ -26,7 +26,7 @@ init
 	readFile@File( {
 		.filename = "apikeys.json",
 		.format = "json"
-	} )( store );
+	} )( store )
 
 	// Put the API keys in a map, for later fast retrieval
 	for( key in store.apiKeys ) {
